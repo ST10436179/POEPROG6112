@@ -9,25 +9,27 @@ class StudentTest {
     private ArrayList<Student> students;
     private Scanner scanner;
 
+    // This method runs before each test to set up the testing environment
     @BeforeEach
     void setUp() {
         students = new ArrayList<>();
-        // Mock Scanner input for testing
         scanner = new Scanner(System.in);
     }
 
+    // Test if a student can be saved correctly
     @Test
     void testSaveStudent() {
-        // Test data
+        // Create a new student
         String studentId = "S001";
         String name = "John Doe";
         int age = 18;
         String email = "john@example.com";
         String course = "Math";
 
+        // Add the student to the list
         students.add(new Student(studentId, name, age, email, course));
 
-        // Validate that the student was saved
+        // Check if the student was added correctly
         assertEquals(1, students.size());
         assertEquals(studentId, students.get(0).studentId);
         assertEquals(name, students.get(0).name);
@@ -36,48 +38,48 @@ class StudentTest {
         assertEquals(course, students.get(0).course);
     }
 
+    // Test if a student can be searched correctly
     @Test
     void testSearchStudent() {
+        // Add a student to the list
         students.add(new Student("S001", "John Doe", 18, "john@example.com", "Math"));
 
-        // Prepare scanner input for searching student
+        // Prepare the scanner to search for the student
         scanner = new Scanner("S001");
         Student.searchStudent(students, scanner);
-
-        // No direct output validation in this test, but can be checked with mocks or further refactoring
     }
 
+    // Test if searching for a non-existing student doesn't crash
     @Test
     void testSearchStudent_StudentNotFound() {
+        // Prepare the scanner to search for a non-existing student
         scanner = new Scanner("S002");
         Student.searchStudent(students, scanner);
-
-        // Test that searching for a non-existing student doesn't crash
-        // Could also be refined with output capturing to verify message
     }
 
+    // Test if a student can be deleted correctly
     @Test
     void testDeleteStudent() {
+        // Add a student to the list
         students.add(new Student("S001", "John Doe", 18, "john@example.com", "Math"));
 
-        // Prepare scanner input for deleting student
-        scanner = new Scanner("S001\ny"); // Assuming "yes" input for deletion confirmation
+        // Prepare the scanner to delete the student
+        scanner = new Scanner("S001\ny");
         Student.deleteStudent(students, scanner);
 
-        // Validate that the student was deleted
+        // Check if the student was deleted correctly
         assertEquals(0, students.size());
     }
 
+    // Test if deleting a non-existing student doesn't crash
     @Test
     void testDeleteStudent_StudentNotFound() {
-        // Prepare scanner input for a student not found scenario
+        // Prepare the scanner to delete a non-existing student
         scanner = new Scanner("S002");
         Student.deleteStudent(students, scanner);
-
-        // Test that deleting a non-existing student doesn't crash
-        // Could also be refined with output capturing to verify message
     }
 
+    // Test if a valid age is accepted
     @Test
     void testStudentAge_StudentAgeValid() {
         int validAge = 18;
@@ -85,6 +87,7 @@ class StudentTest {
         assertTrue(isValidAge, "Age should be valid");
     }
 
+    // Test if an invalid age is rejected
     @Test
     void testStudentAge_StudentAgeInvalid() {
         int invalidAge = 15;
@@ -92,6 +95,7 @@ class StudentTest {
         assertFalse(isValidAge, "Age should be invalid, less than 16");
     }
 
+    // Test if an invalid age (non-numeric) is rejected
     @Test
     void testStudentAge_StudentAgeInvalidCharacter() {
         String invalidAge = "abc";
