@@ -19,10 +19,6 @@ class Student {
         this.course = course;
     }
 
-    public Student( ){
-
-    }
-
 
     // capture student details method
     public static void captureStudent(ArrayList<Student> students, Scanner scanner) {
@@ -158,7 +154,7 @@ class Student {
 
     /// This is a helper method to exit application
     public static void exitStudentApplication() {
-        System.out.println("Exiting application. Goodbye!");
+        System.out.println("Exiting application.");
         System.exit(0);
     }
 }

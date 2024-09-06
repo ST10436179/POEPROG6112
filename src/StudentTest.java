@@ -52,8 +52,7 @@ class StudentTest {
         scanner = new Scanner("S002");
         Student.searchStudent(students, scanner);
 
-        // Test that searching for a non-existing student doesn't crash
-        // Could also be refined with output capturing to verify message
+
     }
 
     @Test
@@ -74,8 +73,6 @@ class StudentTest {
         scanner = new Scanner("S002");
         Student.deleteStudent(students, scanner);
 
-        // Test that deleting a non-existing student doesn't crash
-        // Could also be refined with output capturing to verify message
     }
 
     @Test
