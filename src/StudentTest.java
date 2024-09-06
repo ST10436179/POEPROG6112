@@ -75,7 +75,6 @@ class StudentTest {
         Student.deleteStudent(students, scanner);
 
         // Test that deleting a non-existing student doesn't crash
-        // Could also be refined with output capturing to verify message
     }
 
     @Test
